@@ -10,6 +10,22 @@ SourceList["DQGMB"] = {
   url : "https://www.DQGMBinder.com/share/-MkKQPRCdZ4LiSLXwgwQ",
   date : "2023/10/04"
 };
+
+// Setting up arrays for easy reference to chosen dragon ancestry later
+const dragonColours = ["Amethyst", "Black", "Blue", "Brass", "Bronze", "Copper", "Crystal", "Emerald", "Gold", "Green", "Purple", "Red", "Sapphire", "Silver", "Topaz", "White"];
+const damageTypes = ["Acid", "Cold", "Fire", "Force", "Lightning", "Necrotic", "Poison", "Psychic", "Radiant", "Thunder"];
+
+const dragonColourDmgMap = [["Black", "Acid"], ["Blue", "Lightning"], ["Green", "Poison"],["Purple", "Psychic"], ["Red", "Fire"], ["White", "Cold"]];
+dragonColourDmgMap.concat([["Amethyst", "Force"], ["Crystal", "Radiant"], ["Emerald", "Psychic"], ["Sapphire", "Thunder"], ["Topaz", "Necrotic"]]);
+dragonColourDmgMap.concat([["Brass", "Fire"], ["Bronze", "Lightning"], ["Copper", "Acid"], ["Gold", "Fire"], ["Silver", "Cold"]]);
+
+function buildDrgnAncestryDesc(dragonDmgType) {
+	var descArray = [];
+	descArray[0] = "I have draconic ancestry with" + dragonDmgType[0] + "dragons, which are affiliated with " + dragonDmgType[1] + " damage";
+	descArray[1] = "When interacting with dragons, if I can add my Proficiency Bonus, I can double it";
+	return descArray;
+};
+
 AddSubClass("sorcerer", "draconic bloodline revised", {
 	regExpSearch : /^((?=.*(sorcerer|witch))(?=.*bloodline)|(?=.*dragon)(?=.*ancestor)).*$/i,
 	subname : "Draconic Bloodline Revised",
@@ -23,129 +39,129 @@ AddSubClass("sorcerer", "draconic bloodline revised", {
 					'Choose a Dragon Ancestor using the "Choose Feature" button above',
 					"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 				]),
-				choices : ["Amethyst Dragon Ancestor", "Black Dragon Ancestor", "Blue Dragon Ancestor", "Brass Dragon Ancestor", "Bronze Dragon Ancestor", "Copper Dragon Ancestor", "Crystal Dragon Ancestor", "Emerald Dragon Ancestor", "Gold Dragon Ancestor", "Green Dragon Ancestor", "Purple Dragon Ancestor", "Red Dragon Ancestor", "Sapphire Dragon Ancestor", "Silver Dragon Ancestor", "Topaz Dragon Ancestor", "White Dragon Ancestor"],
-				"amethyst dragon ancestor" : {
-					name : "Amethyst Dragon Ancestor",
+				choices : ["Amethyst Dragon", "Black Dragon", "Blue Dragon", "Brass Dragon", "Bronze Dragon", "Copper Dragon", "Crystal Dragon", "Emerald Dragon", "Gold Dragon", "Green Dragon", "Purple Dragon", "Red Dragon", "Sapphire Dragon", "Silver Dragon", "Topaz Dragon", "White Dragon"],
+				"amethyst dragon" : {
+					name : "Amethyst Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with amethyst dragons, which are affiliated with force damage",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "force"
 				},
-				"black dragon ancestor" : {
-					name : "Black Dragon Ancestor",
+				"black dragon" : {
+					name : "Black Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with black dragons, which are affiliated with acid damage",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "acid"
 				},
-				"blue dragon ancestor" : {
-					name : "Blue Dragon Ancestor",
+				"blue dragon" : {
+					name : "Blue Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with blue dragons, which are affiliated with lightning damage",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "lightning"
 				},
-				"brass dragon ancestor" : {
-					name : "Brass Dragon Ancestor",
+				"brass dragon" : {
+					name : "Brass Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with brass dragons, which are affiliated with fire damage",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "fire"
 				},
-				"bronze dragon ancestor" : {
-					name : "Bronze Dragon Ancestor",
+				"bronze dragon" : {
+					name : "Bronze Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with bronze dragons, which are affiliated with lightning dmg",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "lightning"
 				},
-				"copper dragon ancestor" : {
-					name : "Copper Dragon Ancestor",
+				"copper dragon" : {
+					name : "Copper Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with copper dragons, which are affiliated with acid damage",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "acid"
 				},
-				"crystal dragon ancestor" : {
-					name : "Crystal Dragon Ancestor",
+				"crystal dragon" : {
+					name : "Crystal Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with crystal dragons, which are affiliated with radiant dmg",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "radiant"
 				},
-				"emerald dragon ancestor" : {
-					name : "Emerald Dragon Ancestor",
+				"emerald dragon" : {
+					name : "Emerald Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with emerald dragons, which are affiliated with psychic dmg",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "psychic"
 				},
-				"gold dragon ancestor" : {
-					name : "Gold Dragon Ancestor",
+				"gold dragon" : {
+					name : "Gold Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with gold dragons, which are affiliated with fire damage",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "fire"
 				},
-				"green dragon ancestor" : {
-					name : "Green Dragon Ancestor",
+				"green dragon" : {
+					name : "Green Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with green dragons, which are affiliated with poison damage",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "poison"
 				},
-				"purple dragon ancestor" : {
-					name : "Purple Dragon Ancestor",
+				"purple dragon" : {
+					name : "Purple Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with purple dragons, which are affiliated with psychic dmg",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "psychic"
 				},
-				"red dragon ancestor" : {
-					name : "Red Dragon Ancestor",
+				"red dragon" : {
+					name : "Red Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with red dragons, which are affiliated with fire damage",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "fire"
 				},
-				"sapphire dragon ancestor" : {
-					name : "Sapphire Dragon Ancestor",
+				"sapphire dragon" : {
+					name : "Sapphire Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with sapphire dragons, which are affiliated with thunder dmg",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "thunder"
 				},
-				"silver dragon ancestor" : {
-					name : "Silver Dragon Ancestor",
+				"silver dragon" : {
+					name : "Silver Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with silver dragons, which are affiliated with cold damage",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "cold",
 				},
-				"topaz dragon ancestor" : {
-					name : "Topaz Dragon Ancestor",
+				"topaz dragon" : {
+					name : "Topaz Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with topaz dragons, which are affiliated with necrotic dmg",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 					]),
 					dependentChoices : "necrotic"
 				},
-				"white dragon ancestor" : {
-					name : "White Dragon Ancestor",
+				"white dragon" : {
+					name : "White Dragon Ancestry",
 					description : desc([
 						"I have draconic ancestry with white dragons, which are affiliated with cold damage",
 						"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
@@ -217,8 +233,8 @@ AddSubClass("sorcerer", "draconic bloodline revised", {
 				minlevel : 6,
 				description : desc([
 					'Choose a Dragon Ancestor using the "Choose Feature" button above',
-					"I add Cha mod for spell damage if matching my dragon ancestor's affiliated type",
-					"I can spend 1 sorcery point to gain resistance to my dragon ancestor's affiliated type"
+					"I add Cha mod for spell damage if matching my dragon's affiliated type",
+					"I can spend 1 sorcery point to gain resistance to my dragon's affiliated type"
 				]),
 				additional : "optional: 1 sorcery point",
 				choices : ["acid", "cold", "fire", "force", "lightning", "necrotic", "poison", "psychic", "radiant", "thunder"],
