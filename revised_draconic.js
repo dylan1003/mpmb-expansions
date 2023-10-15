@@ -19,6 +19,8 @@ const dragonColourDmgMap = [["Amethyst", "Force"],["Black", "Acid"], ["Blue", "L
 dragonColourDmgMap.concat([["Crystal", "Radiant"], ["Emerald", "Psychic"], ["Gold", "Fire"], ["Green", "Poison"], ["Purple", "Psychic"]]);
 dragonColourDmgMap.concat([["Red", "Fire"], ["Sapphire", "Thunder"], ["Silver", "Cold"], ["Topaz", "Necrotic"], ["White", "Cold"]]);
 
+const dragonChoices = ["amethyst dragon", "black dragon", "blue dragon", "brass dragon", "bronze dragon", "copper dragon", "crystal dragon", "emerald dragon", "gold dragon", "green dragon", "purple dragon", "red dragon", "sapphire dragon", "silver dragon", "topaz dragon", "white dragon"];
+
 function buildDragonAncestryDesc(dragonAttributes) {
 	var descArray = [];
 	descArray[0] = "I have draconic ancestry with" + dragonAttributes[0] + " dragons, which are affiliated with " + dragonAttributes[1] + " damage";
@@ -34,7 +36,7 @@ var sCFeature1 = {
 		'Choose a Draconic Ancestor using the "Choose Feature" button above',
 		"When interacting with dragons, if I can add my Proficiency Bonus, I can double it"
 	]),
-	choices: ["amethyst dragon", "black dragon", "blue dragon", "brass dragon", "bronze dragon", "copper dragon", "crystal dragon", "emerald dragon", "gold dragon", "green dragon", "purple dragon", "red dragon", "sapphire dragon", "silver dragon", "topaz dragon", "white dragon"],
+	choices: dragonChoices,
 	languageProfs : ["Draconic"],
 	choiceDependencies : [{
 		feature : "subclassfeature6",
@@ -45,12 +47,12 @@ var sCFeature1 = {
 };
 
 // Create properties for each choice in dragonData object
-for(var choice in dragonColourDmgMap){
-	const propertyName = choice[0].toLowerCase() + " dragon"; // Convert choice to a property name
-	sCFeature1[propertyName.toString()] = {
-		name: '${choice[0]} Dragon Ancestry',
-		description: desc(buildDragonAncestryDesc(choice)),
-		dependentChoices: dragonColourDmgMap[1].toLowerCase()
+for(var i = 0; i < dragonChoices.length; i++){
+	const propertyName = dragonChoices[i]; // Convert choice to a property name
+	sCFeature1[propertyName] = {
+		name: dragonColourDmgMap[i][0] + ' Dragon Ancestry',
+		description: desc(buildDragonAncestryDesc(dragonColourDmgMap[i])),
+		dependentChoices: dragonColourDmgMap[i][1].toLowerCase()
 	}
 };
 
